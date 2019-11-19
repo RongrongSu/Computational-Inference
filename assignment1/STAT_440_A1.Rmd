@@ -1,0 +1,78 @@
+---
+title: "STAT 440/840 - CM 761 - Assignment 1 - Spring 2019"
+author: "Name"
+date: 'Due: Tuesday, June 4 at 9:00am on Crowdmark'
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+---
+
+
+
+Assignment solutions need to be submitted using `R Markdown` from `RStudio` or `LaTeX` if you prefer.  **R Markdown is strongly recommended.**  This file is an `R Markdown` document.
+
+
+1. The Weibull distribution with shape parameter $\alpha >0$ and scale parameter $\sigma>0$ is given by
+
+$$ f(x \big| \lambda,\alpha) =
+\begin{cases}
+\frac{\alpha}{\sigma}\left(\frac{x}{\sigma}\right)^{\alpha-1}e^{-(x/\sigma)^{\alpha}} & x\geq0 ,\\
+0 & x<0,
+\end{cases}
+$$
+
+
+a) Derive the cdf for the Weibull distribution. 
+
+
+b) Derive the quantile function for the exponential distribution. i.e. find $q(p|\alpha,\sigma)$ where $p\in (0,1)$.
+
+
+c) For a given $\alpha$, find an expresion for the MLE, $\widehat\sigma$, and derive the observed and fisher information. 
+
+d) To estimate the median using ML we use 
+$$q(p=0.5| \alpha, \widehat\sigma )$$
+derive the fisher information for this quantity. 
+$\;$
+
+e) Using a simulation study with $m=1000$ replications to compare the MLE and $X_{median}$ as estimators for the median value of the Weibull distribution when $\sigma = 1/2, 1, 2$, $n= 10, 20, 50$ and  $\alpha  = 3$. Summarize the simulation by 
+    + comparing the bias and standard deviation of the estimators,
+    + combine bias and standard deviation into a single metric called the square root mean square error, 
+    $$ MSE(\widetilde\theta) =\sqrt{ (\widetilde\theta-\theta)^2 + \mathbb{V}\mbox{ar}(\widetilde\theta)  } $$
+    + use tables and plots to present the results,
+    + and provide some comments on the results. 
+
+$\;$
+
+2. The file ``eng-monthly-011942-112007.csv'' contains monthly weather data from Yellowknife, NT over the years 1959 to 1996. Here are considering the maximum wind gust. 
+```{r}
+temp = read.csv( "eng-monthly-011942-112007.csv" )
+speed = temp$Spd.of.Max.Gust..km.h.
+```
+
+The Weibull distribution with shape parameter $k=\alpha >0$ and scale parameter $\lambda= \sigma>0$ is given by
+
+$$ f(x \big| \lambda,\alpha) =
+\begin{cases}
+\frac{\alpha}{\sigma}\left(\frac{x}{\sigma}\right)^{\alpha-1}e^{-(x/\sigma)^{\alpha}} & x\geq0 ,\\
+0 & x<0,
+\end{cases}
+$$
+
+In this question we assume the scale parameter is known and equal to $64$, i.e. $\sigma=64$. We are interested in estimating the unknown shape parameter, $\alpha$.
+
+
+a) State and plot the log-likelihood.
+
+b) Derive the Score and Observed information Matrix.
+
+c) Derive a newton and raphson algorithm to find the MLE and using the starting value of $\alpha^{(0)}=12$ give the next five iterations. 
+
+d) Construct a confidence interval for $\alpha$ using the   
+    + the Wald statistic normality of the MLE, and
+    + the log-likelihood ratio statistc. 
+
+
